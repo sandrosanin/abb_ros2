@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>abb_irb2600_20_165_moveit_config</name>
+  <version>0.0.0</version>
+  <description>
+    <p>
+      MoveIt package for the ABB IRB 2600-20/1.65.
+    </p>
+    <p>
+      An automatically generated package with all the configuration files
+      for using the ABB IRB 2600-20/1.65 with the MoveIt Motion Planning
+      Framework.
+    </p>
+  </description>
+  <author email="email@todo.com">Sandro Sanin</author>
+  <maintainer email="levi.armstrong@swri.org">Levi Armstrong (Southwest Research Institute)</maintainer>
+
+  <license>BSD</license>
+
+  <url type="bugtracker">https://github.com/ros-industrial/abb_experimental/issues</url>
+  <url type="repository">https://github.com/ros-industrial/abb_experimental</url>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <exec_depend>abb_irb2600_support</exec_depend>
+  <exec_depend>joint_state_publisher</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <!-- This package is referenced in the warehouse launch files, but does not build out of the box at the moment. Commented the dependency until this works. -->
+  <!-- <exec_depend>warehouse_ros_mongo</exec_depend> -->
+  <exec_depend>rviz2</exec_depend>
+  <exec_depend>xacro</exec_depend>
+
+  <export>
+      <build_type>ament_cmake</build_type>
+    <!-- <architecture_independent /> -->
+  </export>
+</package>

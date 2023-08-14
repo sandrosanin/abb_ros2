@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="abb_irb2600_20_165">
+
+  <xacro:include filename="$(find abb_irb2600_20_165_moveit_config)/config/abb_irb2600_20_165_macro.srdf.xacro"/>
+  <xacro:abb_irb2600_20_165_srdf/>
+
+</robot>
