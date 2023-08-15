@@ -4,15 +4,9 @@ import os
 import yaml
 from launch import LaunchDescription
 from launch_ros.actions import Node
-from launch_ros.substitutions import FindPackageShare
-from launch.actions import ExecuteProcess, DeclareLaunchArgument
-from launch.substitutions import (
-    Command,
-    FindExecutable,
-    LaunchConfiguration,
-    PathJoinSubstitution,
-    TextSubstitution,
-)
+from launch.actions import ExecuteProcess
+from ament_index_python.packages import get_package_share_directory
+import xacro
 
 
 def load_file(package_name, file_path):
@@ -38,24 +32,17 @@ def load_yaml(package_name, file_path):
 
 
 def generate_launch_description():
-    description_file_arg = DeclareLaunchArgument(
-        "description_file",
-        default_value=TextSubstitution(text="irb2600_12_165.xacro"),
-        description="Name of a supported robot description file in package.",
-    )
-    description_file = LaunchConfiguration("description_file")
 
-    robot_description_content = Command(
-        [
-            PathJoinSubstitution([FindExecutable(name="xacro")]),
-            " ",
-            PathJoinSubstitution(
-                [FindPackageShare("abb_irb2600_support"), "urdf", description_file]
-            ),
-        ]
-    )
+    robot_description_path = get_package_share_directory("abb_irb2600_support")
 
-    robot_description = {"robot_description": robot_description_content}
+    robot_description_config = xacro.process_file(
+        os.path.join(
+            robot_description_path,
+            "urdf",
+            "irb2600_20_165.xacro",
+        )
+    )
+    robot_description = {"robot_description": robot_description_config.toxml()}
 
     robot_state_publisher_node = Node(
         package="robot_state_publisher",
@@ -76,17 +63,9 @@ def generate_launch_description():
         name="rviz2",
         arguments=[
             "-d",
-            PathJoinSubstitution(
-                [
-                    FindPackageShare("abb_irb2600_support"),
-                    "rviz",
-                    "urdf_description.rviz",
-                ]
-            ),
+            os.path.join(robot_description_path, "rviz", "urdf_description.rviz"),
         ],
         output="screen",
     )
 
-    return LaunchDescription(
-        [description_file_arg, robot_state_publisher_node, joint_state_sliders, rviz]
-    )
+    return LaunchDescription([robot_state_publisher_node, joint_state_sliders, rviz])

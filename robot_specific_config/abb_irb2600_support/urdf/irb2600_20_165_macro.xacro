@@ -7,13 +7,13 @@
     <link name="${prefix}base_link">
       <collision name="collision">
         <geometry>
-          <mesh filename="package://abb_irb2600_support/meshes/irb2600/collision/base_link.stl" />
+          <mesh filename="package://abb_irb2600_support/meshes/irb2600_20_165/collision/base_link.stl" />
         </geometry>
         <xacro:material_abb_yellow />
       </collision>
       <visual name="visual">
         <geometry>
-          <mesh filename="package://abb_irb2600_support/meshes/irb2600/visual/base_link.stl" />
+          <mesh filename="package://abb_irb2600_support/meshes/irb2600_20_165/visual/base_link.stl" />
         </geometry>
         <xacro:material_abb_graphite_white/>
       </visual>
@@ -21,13 +21,13 @@
     <link name="${prefix}link_1">
       <collision name="collision">
         <geometry>
-          <mesh filename="package://abb_irb2600_support/meshes/irb2600/collision/link_1.stl" />
+          <mesh filename="package://abb_irb2600_support/meshes/irb2600_20_165/collision/link_1.stl" />
         </geometry>
         <xacro:material_abb_yellow />
       </collision>
       <visual name="visual">
         <geometry>
-          <mesh filename="package://abb_irb2600_support/meshes/irb2600/visual/link_1.stl" />
+          <mesh filename="package://abb_irb2600_support/meshes/irb2600_20_165/visual/link_1.stl" />
         </geometry>
         <xacro:material_abb_graphite_white/>
       </visual>
